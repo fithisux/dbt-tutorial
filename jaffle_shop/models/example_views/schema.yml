@@ -1,0 +1,39 @@
+
+version: 2
+
+models:
+  - name: my_second_dbt_model
+    description: "A starter dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this view"
+        tests:
+          - unique
+          - not_null
+  - name: customers_denormalized
+    description: "Denormalized customers dbt model"
+    columns:
+      - name: customer_id
+        description: "The customer id, primary key of the view"
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('customers')
+              field: id
+      - name: first_name
+        description: "The first name of the customer"
+        tests:
+          - not_null
+      - name: last_name
+        description: "The last name of the customer"
+        tests:
+          - not_null
+      - name: first_order_date
+        description: "The date when first order happened by the customer"
+        tests:
+          - not_null
+      - name: most_recent_order_date
+        description: "The date when most recent order happened by the customer"
+        tests:
+          - not_null
