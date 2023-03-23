@@ -1,6 +1,6 @@
 # dbt-tutorial
 
-This is my take on the starter eductaional project mentioned here
+This is my take on the starter educational project mentioned here
 [Quickstart](https://docs.getdbt.com/docs/quickstarts/dbt-core/quickstart)
 using a docker postgresql container.
 
