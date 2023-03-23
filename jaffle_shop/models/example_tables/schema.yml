@@ -1,0 +1,46 @@
+
+version: 2
+
+models:
+  - name: customers
+    description: "A customers dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: "The first name of the customer"
+        tests:
+          - not_null
+      - name: last_name
+        description: "The last name of the customer"
+        tests:
+          - not_null
+
+
+  - name: orders
+    description: "An orders dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        description: "The id of the customer"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('customers')
+              field: id
+      - name: order_date
+        description: "The date when order happened"
+        tests:
+          - not_null
+      - name: status
+        description: "The status of the order"
+        tests:
+          - accepted_values:
+              values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
